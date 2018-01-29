@@ -221,7 +221,8 @@ class Presenter: NSObject {
         guard let window = maskingView.window else { return [] }
         let inNormalWindowLevel: Bool = {
             if let vc = presentationContext.viewControllerValue() as? WindowViewController {
-                return vc.windowLevel == UIWindowLevelNormal
+                let level = vc.windowLevel
+                return level >= UIWindowLevelNormal && level < UIWindowLevelStatusBar
             }
             return true
         } ()
